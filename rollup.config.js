@@ -5,7 +5,6 @@ import terser from '@rollup/plugin-terser';
 import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import css from 'rollup-plugin-css-only';
-import lodash from '@rollup-plugin-lodash';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -60,7 +59,6 @@ export default {
 			exportConditions: ['svelte']
 		}),
 		commonjs(),
-		lodash(),
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated

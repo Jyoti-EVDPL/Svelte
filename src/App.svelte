@@ -1,7 +1,5 @@
 <script>
-	// import { shuffle } from 'lodash';
-	// const shuffle = require('lodash');
-	
+	import { shuffle } from 'lodash';	
 	export let name;
 	const number = 0;
 	const Click =()=>{
@@ -26,9 +24,12 @@
 	];
 	// Lists and Keys
 	let LK = ['aanda','banda','senda'];
-	// const ShuffleNames = ()=>{
-	// 	LK = shuffle(names);
-	// }
+	const ShuffleNames = ()=>{
+		LK = shuffle(names);
+	}
+
+
+	// Form Handling (Part 1)
 
 </script>
 
@@ -75,6 +76,9 @@
 	<div>
 		<button on:click={ShuffleNames}>Shuffle</button>
 	</div>
+
+	<!-- Form Handling (Part 1) -->
+	
 
 </main>
 
