@@ -19,6 +19,45 @@
 	function submitForm2(){
 		console.log(formValues2);
 	}
+	// Reactive Declarations
+	let firstName ='Bruce'
+	let lastName = 'Wayne'
+	$:fullname = `${firstName} ${lastName}`
+	let items = [
+		{
+			id: 1,
+			title:'TV',
+			price: 100
+		},
+		{
+			id: 2,
+			title:'phone',
+			price:200
+		},
+		{
+			id: 3,
+			title:'Laptop',
+			price:300
+		}
+	]
+	$: total = items.reduce((total,curr)=>(total = total + curr.price),0)
+
+	// Reactive Statements
+	$: console.log(`Full name is ${firstName} ${lastName}`)
+	$: {
+		const greet = `Full name is ${firstName} ${lastName}`
+		console.log(greet)
+		console.log(greet+' dca')
+	}
+	let volume = 0;
+	$:if(volume < 0){
+		alert("Volume cant be -ve");
+		volume = 0;
+	}else if(volume > 20){
+		alert("Volume cant be more than 20");
+		volume = 0;
+	}
+	
 
 </script>
 
@@ -86,6 +125,7 @@
 		</div>
 
 		<div>
+			<!-- svelte-ignore a11y-label-has-associated-control -->
 			<label>Years OF Experiance</label>
 			<input type="radio" id="0-2" value="0-2" bind:group={formValues2.yearsOfExp}>
 			<label for="0-2">0-2</label>
@@ -101,6 +141,30 @@
 		</div>
 
 	</form>
+<hr>
+	<!-- Reactive Declarations -->
+	<h2>{firstName} {lastName}</h2>
+	<h2>{fullname}</h2>
+	<button on:click={()=>{
+		firstName = 'natasa',
+		lastName = 'roman'
+	}}>Change Name</button>
+
+	<h4>more complex declarations</h4>
+	<h3>Total-{items.reduce((total,curr)=>(total = total + curr.price),0)}</h3>
+	<h4>Simpler is: {total}</h4>
+	<h5>Also they change automatically when value changes</h5>
+	<button on:click={()=>
+	(items = [...items,{id:4,title:'keyboard',price:50}])}
+	>Click to add item</button>
+
+	<hr>
+	<!-- Reactive Statements -->
+	<button on:click={()=>(volume+=2)}>Increase</button>
+	<h2>Current Volume:{volume}</h2>
+	<button on:click={()=>(volume-=2)}>Decrease</button>
+
+	
 
 
 </main>
